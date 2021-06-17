@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>ADS Sports</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/estilo.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/da32964767.js" crossorigin="anonymous"></script>
+    <script src="/static/js/progressbar.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/parallax.js/1.4.2/parallax.min.js"></script>
+</head>
+<body>
+    <header>
+        <div id="topo">
+            <nav>
+                <a href="/"><img class="logo" src="/static/imagens/logo2.png" alt="Logo"></a>
+                <ul class="menu">
+                    <li><a href="#">Masculino</a>
+                        <ul>
+                            <li><a href="/camisasmasculino">Camisas</a></li>
+                            <li><a href="/shortsmasculino">Shorts</a></li>
+                            <li><a href="/tenismasculino">Tênis</a></li>
+                            <li><a href="/chuteirasmasculino">Chuteiras</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Feminino</a>
+                        <ul>
+                            <li><a href="/camisasfeminino">Camisas</a></li>
+                            <li><a href="/shortsfeminino">Shorts</a></li>
+                            <li><a href="/tenisfeminino">Tênis</a></li>
+                            <li><a href="/chuteirasfeminino">Chuteiras</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Esportes</a>
+                        <ul>
+                            <li><a href="/futebol">Futebol</a></li>
+                            <li><a href="/futebolamericano">Futebol Americano</a></li>
+                            <li><a href="/basquete">Basquete</a></li>
+                            <li><a href="/volei">Vôlei</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/lancamentos">Lançamentos</a></li>
+                    <li><a href="/ofertas">Ofertas</a></li>
+                    <li><a href="/carrinho">Carrinho <i class="fas fa-shopping-cart"></i></a></li>
+                    {% if user.is_authenticated %}
+                    
+                    <li><a href="/perfil">Olá, {{ user.username }}</a></li>
+                    <li><a href="/logoutusuario">Sair</a></li>
+
+                    {% else %}
+                    <li><a href="/login">Entrar</a></li>
+                    {% endif %}
+
+                    {% if user.is_staff %} 
+                    <li><a href="/listaprodutos">Lista de Produtos</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="tenis_masculino">
+        <h1>Tênis Masculinos</h1>
+        {% for dbs in db %}
+        <div class="mostra_produto">
+        <p><a href="/produto/{{dbs.id}}/"><b>{{dbs.nome}}</b></p></a><br>
+        <p><a href="/produto/{{dbs.id}}/"><img src="/static/imagens/semimagem (1).gif" width="300px" height="315px" alt=""></p></a><br>
+        <p> R$ {{dbs.preco}}</p><br>
+        <p><th><button class="adicionar_carrinho btn btn-success">Adicionar ao Carrinho</button></th></p><br></div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="rodape">
+        <div class="rodape_1">
+            <h3>Formas de Pagamento</h3><br><br>
+            <p><i class="far fa-credit-card"></i>   Cartão de débito e crédito.</p>
+            <p><i class="fas fa-file-invoice-dollar"></i>   Boleto</p>
+        </div>
+        <div class="rodape_2">
+            <h3>Redes Sociais</h3><br>
+            <p><i class="fab fa-facebook"></i>  Facebook: ADSportsOficial</p>
+            <p><i class="fab fa-instagram"></i> Instagram: oficialadsports</p>
+            <p><i class="fab fa-twitter"></i>   Twitter: ADSports</p>
+        </div>
+        <div class="rodape_3">
+            <img src="/static/imagens/logo2.png" alt="Logo">
+            <p>Siga seu esporte.</p>
+        </div>
+    </div>
+</body>
+</html>
